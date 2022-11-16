@@ -1,0 +1,20 @@
+name: Running tests for React
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+      - name: Install node modules
+        run: npm i
+
+      - name: Run tests
+        run: npx crusher.dev@canary test:run --pre-run="npm run start" --token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTc5MyIsInRlYW1faWQiOjM2MjMsImlhdCI6MTY2ODYwMTQzNiwiZXhwIjoxNzAwMTM3NDM2fQ.PD_b4WcuSH9S8HAbZ4nPN8OKrS3lRVv1zQqiAH0J_RE"
